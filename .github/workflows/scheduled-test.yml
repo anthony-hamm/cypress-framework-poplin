@@ -1,0 +1,41 @@
+name: "Nightly Test Run"
+on:
+  schedule: 
+  - cron: "0 5 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  ubuntu-job:
+    name: "BrowserStack Test on Ubuntu"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm install
+      - name: BrowserStack Env Setup
+        uses: browserstack/github-actions/setup-env@master
+        with:
+          username: ${{ secrets.BROWSERSTACK_USERNAME }}
+          access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      - name: Trigger test for Workforce Center
+        env: 
+          projectName: Test
+          CYPRESS_DBUSER: ${{ secrets.CYPRESS_DBUSER }}
+          CYPRESS_DBPASSWORD: ${{ secrets.CYPRESS_DBPASSWORD }}
+        continue-on-error: true
+        run: |
+          node ./cypress/support/scripts/setObservabilityTrue.js
+          npm run browserstack:test -- --build-name Nightly
+      - name: Send test results to Slack
+        env:
+          CYPRESS_RUNLABEL: Test - Nightly
+        run: node cypress/support/scripts/send-test-results.js
+
+

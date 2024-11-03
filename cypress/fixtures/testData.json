@@ -1,0 +1,4 @@
+{
+  "invalidPhone": "1",
+  "verifyInvalidPhoneErrorMessage": "Please enter a valid phone number"
+}

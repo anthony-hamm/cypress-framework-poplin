@@ -1,0 +1,36 @@
+{
+  "auth": {
+    "username": "${BROWSERSTACK_USERNAME}",
+    "access_key": "${BROWSERSTACK_ACCESS_KEY}"
+  },
+  "browsers": [
+    {
+      "browser": "chrome",
+      "os": "OS X VENTURA",
+      "versions": ["latest"]
+    }
+  ],
+  "run_settings": {
+    "cypress_version": "13",
+    "headless": true,
+    "network_logs": true,
+    "specs": ["cypress/e2e/**/**.spec.js"],
+    "npm_dependencies": {
+      "cypress": "12.6.0",
+      "fs-extra": "^10.1.0",
+      "cypress-real-events": "^1.12.0",
+      "cypress-file-upload": "^5.0.8",
+      "mysql": "^2.18.1",
+      "dotenv": "^8.2.0",
+      "cypress-dotenv": "^2.0.0",
+      "mocha-junit-reporter": "^2.2.1",
+      "node-fetch": "^3.3.2"
+    },
+    "project_name": "WFC",
+    "build_name": "Build no: 1",
+    "parallels": 4
+  },
+  "connection_settings": {
+    "local": false
+  }
+}

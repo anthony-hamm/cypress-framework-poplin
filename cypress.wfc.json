@@ -1,0 +1,12 @@
+{
+    "urls": {
+        "baseUrl": "https://nonprod-app.poplin.co/",
+        "loginUrl": "https://nonprod-app.poplin.co/auth",
+        "signUpUrl": "https://app.aloware.com/signup"
+    },
+    "users": {
+        "wfcUser": "andrew+ggg@poplin.co",
+        "wfcPassword": "Password1!"
+    },
+    "includeShadowDom" : true 
+}

@@ -1,0 +1,43 @@
+{
+  "name": "cypress-framework",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "cypress framework",
+  "main": "index.js",
+  "scripts": {
+    "cypress:wfc": "cypress open --env name=wfc --config  viewportWidth=1920,viewportHeight=1080 --config-file ./cypress.config.wfc.cjs",
+    "browserstack:wfc": "browserstack-cypress run --sync --cf ./browserstack-test/browserstack.json --env name=wfc --config retries=1,viewportWidth=1920,viewportHeight=1080 --ccf ./cypress.config.wfc.cjs",
+    "merge-reports": "jrm ./reports/final-report.xml './build_artifacts/**/**/**/reports/**.xml' && rm -rf ./build_artifacts",
+    "posttest": "npm run merge-reports",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthony-hamm/cypress-framework-poplin.git"
+  },
+  "author": "Anthony Hamm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anthony-hamm/cypress-framework-poplin/issues"
+  },
+  "homepage": "https://github.com/anthony-hamm/cypress-framework-poplin#readme",
+  "devDependencies": {
+    "@cypress/webpack-preprocessor": "^6.0.1",
+    "@faker-js/faker": "^8.4.1",
+    "browserstack-cypress-cli": "^1.31.4",
+    "cypress": "^13.6.0",
+    "cypress-dotenv": "^2.0.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-if": "^1.12.3",
+    "cypress-network-idle": "^1.14.2",
+    "cypress-real-events": "^1.12.0",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "junit-report-merger": "^6.0.3",
+    "mocha-junit-reporter": "^2.2.1",
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.2"
+  }
+}
